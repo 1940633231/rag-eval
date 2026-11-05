@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "rag-eval"
+version = "0.1.0"
+description = "Reusable evaluation contracts, metrics, runner, and regression gates for RAG systems"
+readme = "README.md"
+requires-python = ">=3.12"
+keywords = ["rag", "evaluation", "retrieval", "llm", "benchmark"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "ir_measures>=0.4,<0.5",
+    "pydantic>=2.5,<3",
+    "PyYAML>=6,<7",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=8,<10",
+]
+
+[project.scripts]
+rag-eval = "rag_eval.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/1940633231/rag-eval"
+Repository = "https://github.com/1940633231/rag-eval"
+Issues = "https://github.com/1940633231/rag-eval/issues"
+Changelog = "https://github.com/1940633231/rag-eval/blob/main/CHANGELOG.md"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+rag_eval = ["py.typed"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+addopts = "-ra"
