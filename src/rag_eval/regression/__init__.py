@@ -1,4 +1,4 @@
-"""Baseline comparison and evaluation gates."""
+"""基线比较与评估门禁。"""
 
 from rag_eval.regression.baseline import (
     Baseline,

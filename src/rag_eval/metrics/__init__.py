@@ -1,4 +1,4 @@
-"""Metric implementations and shared aggregation helpers."""
+"""指标实现与共享聚合工具。"""
 
 from rag_eval.contracts import MetricSummary
 

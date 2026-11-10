@@ -1,4 +1,4 @@
-"""Human-readable Markdown report serialization."""
+"""面向人类阅读的 Markdown 报告序列化。"""
 
 from __future__ import annotations
 

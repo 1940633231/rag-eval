@@ -1,11 +1,11 @@
-# Changelog
+# 更新日志
 
 ## 0.1.0
 
-- Added strict dataset, sample, prediction, and run-manifest contracts.
-- Added ir_measures-backed retrieval metrics and span-safe NDCG.
-- Added deterministic generation, citation, refusal, coverage, and Agent metrics.
-- Added adapter loading, lazy warmup, timeout handling, prediction cache, and
-  JSON/Markdown reports.
-- Added baseline comparison, threshold gates, and trend CSV export.
-- Added the `rag-eval` CLI and optional judge interfaces.
+- 新增严格的数据集、样本、预测与运行清单契约。
+- 新增基于 ir_measures 的检索指标，以及防止重复计分的跨度 NDCG。
+- 新增确定性的生成、引用、拒答、覆盖率与 Agent 指标。
+- 新增适配器加载、惰性 warmup、超时处理、预测缓存，以及 JSON/Markdown
+  报告。
+- 新增基线比较、阈值门禁与趋势 CSV 导出。
+- 新增 `rag-eval` 命令行接口和可选评审接口。

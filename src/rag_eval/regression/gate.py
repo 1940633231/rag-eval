@@ -1,4 +1,4 @@
-"""Configuration-driven regression gate."""
+"""由配置驱动的回归门禁。"""
 
 from __future__ import annotations
 

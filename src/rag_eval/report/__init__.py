@@ -1,4 +1,4 @@
-"""Report writers."""
+"""报告写入器。"""
 
 from rag_eval.report.json_report import load_report_payload, write_json_report
 from rag_eval.report.markdown_report import write_markdown_report

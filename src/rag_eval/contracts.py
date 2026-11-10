@@ -1,4 +1,4 @@
-"""Shared data contracts and dataset loading for rag-eval."""
+"""rag-eval 的共享数据契约与数据集加载功能。"""
 
 from __future__ import annotations
 
@@ -17,7 +17,7 @@ PredictionStatus = Literal["ok", "error", "timeout", "skipped"]
 
 
 class StrictModel(BaseModel):
-    """Base model that keeps dataset and report typos visible."""
+    """让数据集和报告中的拼写错误保持可见的基础模型。"""
 
     model_config = ConfigDict(extra="forbid", validate_assignment=True)
 

@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "rag-eval"
 version = "0.1.0"
-description = "Reusable evaluation contracts, metrics, runner, and regression gates for RAG systems"
+description = "面向 RAG 系统的可复用评估契约、指标、运行器和回归门禁"
 readme = "README.md"
 requires-python = ">=3.12"
 keywords = ["rag", "evaluation", "retrieval", "llm", "benchmark"]

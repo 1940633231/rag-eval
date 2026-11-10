@@ -1,7 +1,6 @@
-"""Minimal OpenAI-compatible judge boundary.
+"""最小化的 OpenAI 兼容评审边界。
 
-The core package intentionally has no HTTP dependency. Applications can inject
-a callable that performs their own request handling.
+核心包刻意不引入 HTTP 依赖。应用可以注入自己的请求处理函数。
 """
 
 from __future__ import annotations

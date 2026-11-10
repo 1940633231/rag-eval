@@ -1,4 +1,4 @@
-"""Deterministic prediction cache backed by JSON files."""
+"""基于 JSON 文件的确定性预测缓存。"""
 
 from __future__ import annotations
 

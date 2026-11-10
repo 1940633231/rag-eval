@@ -1,4 +1,4 @@
-"""Deterministic generation, refusal, citation, and coverage metrics."""
+"""确定性的生成、拒答、引用与覆盖率指标。"""
 
 from __future__ import annotations
 

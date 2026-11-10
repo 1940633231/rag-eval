@@ -1,4 +1,4 @@
-"""Baseline schema, report comparison, and trend export."""
+"""基线数据结构、报告比较与趋势导出。"""
 
 from __future__ import annotations
 

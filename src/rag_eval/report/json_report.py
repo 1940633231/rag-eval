@@ -1,4 +1,4 @@
-"""JSON report serialization."""
+"""JSON 报告序列化。"""
 
 from __future__ import annotations
 

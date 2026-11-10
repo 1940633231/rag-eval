@@ -1,4 +1,4 @@
-"""Command line interface for rag-eval."""
+"""rag-eval 的命令行接口。"""
 
 from __future__ import annotations
 
@@ -30,30 +30,30 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(prog="rag-eval")
     subparsers = parser.add_subparsers(dest="command", required=True)
 
-    validate = subparsers.add_parser("validate", help="validate a dataset directory")
+    validate = subparsers.add_parser("validate", help="校验数据集目录")
     validate.add_argument("dataset_dir")
     validate.add_argument("--json", action="store_true")
 
-    run = subparsers.add_parser("run", help="run an evaluation configuration")
+    run = subparsers.add_parser("run", help="运行评估配置")
     run.add_argument("--config", required=True)
     run.add_argument("--json", action="store_true")
     run.add_argument("--save-baseline")
-    run.add_argument("--baseline", help="compare the new report with this baseline")
-    run.add_argument("--trend-csv", help="append this report to a trend CSV")
+    run.add_argument("--baseline", help="将新报告与该基线进行比较")
+    run.add_argument("--trend-csv", help="将本次报告追加到趋势 CSV")
 
-    compare = subparsers.add_parser("compare", help="compare two reports")
+    compare = subparsers.add_parser("compare", help="比较两份报告")
     compare.add_argument("current")
     compare.add_argument("baseline")
     compare.add_argument("--max-drop", type=float, default=0.0)
     compare.add_argument("--json", action="store_true")
 
-    gate = subparsers.add_parser("gate", help="apply configured regression thresholds")
+    gate = subparsers.add_parser("gate", help="应用配置的回归阈值")
     gate.add_argument("--config", required=True)
     gate.add_argument("--baseline", required=True)
     gate.add_argument("--report", required=True)
     gate.add_argument("--json", action="store_true")
 
-    trend = subparsers.add_parser("trend", help="append a report to a trend CSV")
+    trend = subparsers.add_parser("trend", help="将报告追加到趋势 CSV")
     trend.add_argument("--report", required=True)
     trend.add_argument("--csv", required=True)
     return parser

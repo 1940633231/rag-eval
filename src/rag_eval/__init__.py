@@ -1,4 +1,4 @@
-"""Public package surface for rag-eval."""
+"""rag-eval 的公共包接口。"""
 
 from rag_eval.contracts import (
     Citation,

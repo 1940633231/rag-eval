@@ -1,4 +1,4 @@
-"""Retrieval and span-evidence metrics."""
+"""检索与跨度证据指标。"""
 
 from __future__ import annotations
 
@@ -80,7 +80,7 @@ def _span_match(gold_document: str, gold_span: Span, chunk_document: str, chunk_
 
 
 def span_ndcg_at_k(sample: EvalSample, prediction: Prediction | None, k: int) -> float:
-    """NDCG over unique gold spans, with duplicate chunks counted once."""
+    """基于唯一金标准跨度计算 NDCG，重复分块只计一次。"""
 
     if prediction is None or prediction.status != "ok" or k <= 0:
         return 0.0

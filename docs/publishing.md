@@ -1,39 +1,39 @@
-# Publishing
+# 发布
 
 ## GitHub Release
 
-The `publish` workflow builds the sdist and wheel, validates them, and attaches
-both files to the published GitHub Release.
+`publish` 工作流会构建 sdist 和 wheel、校验产物，并将两个文件附加到已发布的
+GitHub Release。
 
-Current release:
+当前版本：
 
 - `v0.1.0`
 - `rag_eval-0.1.0-py3-none-any.whl`
 - `rag_eval-0.1.0.tar.gz`
 
-## PyPI Trusted Publishing
+## PyPI 可信发布
 
-The PyPI job remains disabled until trusted publishing is configured.
+在完成可信发布配置前，PyPI 发布任务保持禁用。
 
-1. Create or claim the `rag-eval` project on PyPI.
-2. Add a trusted publisher:
-   - owner: `1940633231`
-   - repository: `rag-eval`
-   - workflow: `publish.yml`
-   - environment: `pypi`
-3. Create the `pypi` environment in GitHub repository settings.
-4. Add repository variable `PYPI_TRUSTED_PUBLISHING_READY=true`.
-5. Publish a new tag/release, or manually run the `publish` workflow.
+1. 在 PyPI 创建或认领 `rag-eval` 项目。
+2. 添加可信发布者：
+   - 所有者：`1940633231`
+   - 仓库：`rag-eval`
+   - 工作流：`publish.yml`
+   - 环境：`pypi`
+3. 在 GitHub 仓库设置中创建 `pypi` 环境。
+4. 添加仓库变量 `PYPI_TRUSTED_PUBLISHING_READY=true`。
+5. 发布新的 tag/Release，或手动运行 `publish` 工作流。
 
-The workflow uses OpenID Connect and does not require a long-lived PyPI token.
+该工作流使用 OpenID Connect，不需要长期保存的 PyPI token。
 
-## Business repository dependency
+## 业务仓库依赖
 
-After PyPI publication, replace the bootstrap GitHub Release wheel with:
+PyPI 发布后，将引导用的 GitHub Release wheel 替换为：
 
 ```text
 rag-eval>=0.1.0,<0.2.0
 ```
 
-Both `production-rag` and `kb-agent` already keep this range in their
-`requirements-eval.txt` files.
+`production-rag` 和 `kb-agent` 的 `requirements-eval.txt` 文件中已经保留了
+这个版本范围。

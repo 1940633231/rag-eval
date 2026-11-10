@@ -1,4 +1,4 @@
-"""Judge protocol and normalized judge output."""
+"""评审协议与标准化评审结果。"""
 
 from __future__ import annotations
 
@@ -23,4 +23,4 @@ class LLMJudge(Protocol):
     name: str
 
     def judge(self, sample: EvalSample, prediction: Prediction) -> JudgeResult:
-        """Return a calibrated score or an explicit unknown/parse failure."""
+        """返回校准后的分数，或明确标记为未知/解析失败。"""

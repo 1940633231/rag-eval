@@ -1,4 +1,4 @@
-"""Agent workflow metrics derived from prediction metadata and evidence."""
+"""根据预测元数据和证据计算的 Agent 工作流指标。"""
 
 from __future__ import annotations
 

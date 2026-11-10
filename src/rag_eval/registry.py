@@ -1,4 +1,4 @@
-"""Adapter discovery and the built-in deterministic fake adapter."""
+"""适配器发现机制与内置的确定性伪适配器。"""
 
 from __future__ import annotations
 
@@ -31,10 +31,10 @@ class EvaluationAdapter(Protocol):
     capabilities: set[str]
 
     def validate(self) -> list[str]:
-        """Return human-readable validation errors."""
+        """返回便于阅读的校验错误。"""
 
     def run(self, sample: EvalSample, context: RunContext) -> Prediction:
-        """Evaluate one sample without calculating platform metrics."""
+        """评估单个样本，不计算平台指标。"""
 
 
 class AdapterValidationError(ValueError):
@@ -45,7 +45,7 @@ class AdapterValidationError(ValueError):
 
 
 class FakeAdapter:
-    """Adapter that returns gold evidence and answers deterministically."""
+    """以确定性方式返回金标准证据和答案的适配器。"""
 
     name = "fake"
     capabilities = {"retrieval", "generation", "agent", "citation", "latency"}
@@ -124,7 +124,7 @@ def _resolve_object(spec: str) -> Any:
         raise ValueError("adapter must use 'module:object' syntax")
     working_directory = str(Path.cwd())
     if working_directory not in sys.path:
-        # Console entry points start with the executable directory, not cwd.
+        # 命令行入口启动时，当前目录不在系统模块搜索路径中。
         sys.path.insert(0, working_directory)
     module = importlib.import_module(module_name)
     value: Any = module
