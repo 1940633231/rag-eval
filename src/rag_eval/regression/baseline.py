@@ -94,6 +94,11 @@ def _advisory_metric(name: str) -> bool:
     return name.startswith("latency_") or name.startswith("cost_")
 
 
+def _lower_is_better(name: str) -> bool:
+    """成本类指标越低越好：下降是改善，上升才是回归。"""
+    return name.startswith("token_") or name.endswith("_tokens")
+
+
 def compare_reports(
     current: EvaluationReport | dict[str, Any],
     baseline: Baseline | EvaluationReport | dict[str, Any],
@@ -179,7 +184,11 @@ def compare_reports(
         baseline_score = baseline_metrics[metric_name]
         current_score = current_report.metrics.values[metric_name]
         delta = current_score - baseline_score
-        passed = (-delta) <= max_drop + 1e-12
+        lower_is_better = _lower_is_better(metric_name)
+        if lower_is_better:
+            passed = delta <= max_drop + 1e-12
+        else:
+            passed = (-delta) <= max_drop + 1e-12
         deltas.append(
             MetricDelta(
                 metric=metric_name,
@@ -191,10 +200,16 @@ def compare_reports(
             )
         )
         if not passed:
-            issues.append(
-                f"metric {metric_name} dropped {-delta:.6f}, "
-                f"exceeding max drop {max_drop:.6f}"
-            )
+            if lower_is_better:
+                issues.append(
+                    f"metric {metric_name} increased {delta:.6f}, "
+                    f"exceeding max increase {max_drop:.6f}"
+                )
+            else:
+                issues.append(
+                    f"metric {metric_name} dropped {-delta:.6f}, "
+                    f"exceeding max drop {max_drop:.6f}"
+                )
 
     return ComparisonResult(
         dataset_compatible=dataset_compatible,
