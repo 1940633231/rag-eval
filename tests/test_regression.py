@@ -113,3 +113,39 @@ def test_gate_rejects_mismatched_execution_config(tmp_path: Path) -> None:
 
     assert not result.passed
     assert not result.config_compatible
+
+
+def test_lower_is_better_metric_drop_passes(tmp_path: Path) -> None:
+    baseline_report = _run(tmp_path)
+    baseline_report.metrics.values["token_estimate"] = 1000.0
+    current = baseline_report.model_copy(deep=True)
+    current.metrics.values["token_estimate"] = 900.0
+
+    comparison = compare_reports(
+        current,
+        baseline_from_report(baseline_report),
+        thresholds={"recall@5": 0.0},
+    )
+
+    assert comparison.passed
+    delta = next(
+        item for item in comparison.metric_deltas
+        if item.metric == "token_estimate"
+    )
+    assert delta.delta == -100.0
+
+
+def test_lower_is_better_metric_increase_fails(tmp_path: Path) -> None:
+    baseline_report = _run(tmp_path)
+    baseline_report.metrics.values["token_estimate"] = 1000.0
+    current = baseline_report.model_copy(deep=True)
+    current.metrics.values["token_estimate"] = 1100.0
+
+    comparison = compare_reports(
+        current,
+        baseline_from_report(baseline_report),
+        thresholds={"recall@5": 0.0},
+    )
+
+    assert not comparison.passed
+    assert any("increased" in issue for issue in comparison.issues)
