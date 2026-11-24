@@ -6,6 +6,15 @@
 核心包不会导入业务项目，也不会启动 Docker、Elasticsearch、MySQL、Redis
 或 Milvus。
 
+## 适用范围
+
+`rag-eval` 的定位是评估库与命令行工具，不包含 Web 界面、数据库或分布式调度。
+检索、生成与 Agent 的确定性指标用于回归门禁；LLM Judge 只提供评审协议和可注入
+的 OpenAI 兼容适配器，其结果默认作为辅助信息，不应替代确定性门禁。
+
+三项目联动、指标定义、演示步骤和已知边界见
+[面试项目说明](https://github.com/1940633231/rag-eval/blob/main/docs/interview-case-study.md)。
+
 ## 安装
 
 从 GitHub Release 安装：
@@ -58,9 +67,11 @@ class Adapter:
 
 ```powershell
 python -m pip install -e ".[test]"
-python -m pytest -q
+python -m pytest -q --cov=rag_eval --cov-report=term-missing
 python -m build
 python -m twine check dist/*
 ```
+
+测试覆盖率门槛为 82%。PR CI 会同时执行测试、覆盖率检查、构建和发布包校验。
 
 发布历史请参阅 `CHANGELOG.md`。

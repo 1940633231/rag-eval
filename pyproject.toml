@@ -24,6 +24,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
+    "pytest-cov>=6,<8",
     "pytest>=8,<10",
 ]
 
@@ -46,3 +47,11 @@ rag_eval = ["py.typed"]
 pythonpath = ["src"]
 testpaths = ["tests"]
 addopts = "-ra"
+
+[tool.coverage.run]
+source = ["rag_eval"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+fail_under = 82

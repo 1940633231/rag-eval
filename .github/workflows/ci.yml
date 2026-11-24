@@ -21,7 +21,7 @@ jobs:
           python -m pip install -e ".[test]" build twine
 
       - name: Test
-        run: python -m pytest -q
+        run: python -m pytest -q --cov=rag_eval --cov-report=term-missing
 
       - name: Build distributions
         run: python -m build
